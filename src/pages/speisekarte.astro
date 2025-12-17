@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { menu } from "../data/menu";
+import MenuSection from "../components/MenuSection.astro";
+---
+<BaseLayout title="Speisekarte" currentPath="/speisekarte">
+  <section style="margin: 8px 0 16px;">
+    <h1 class="h1">Speisekarte</h1>
+    <p class="p">Alle Preise inkl. MwSt. • Änderungen vorbehalten</p>
+  </section>
+
+  <div class="grid" style="grid-template-columns: 1fr; gap:14px;">
+    {menu.map((cat) => <MenuSection category={cat} />)}
+  </div>
+
+  <section class="card" style="margin-top:14px;">
+    <h2 class="h2">Hinweise</h2>
+    <p class="p">
+      V = Vegetarisch • 🌶️ = Scharf • Für Allergene/Unverträglichkeiten bitte vor Ort nachfragen.
+    </p>
+  </section>
+</BaseLayout>

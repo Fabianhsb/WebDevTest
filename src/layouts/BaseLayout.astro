@@ -1,0 +1,26 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title, description, currentPath } = Astro.props;
+const fullTitle = title ? `${title} • Ristorante Bella Vita` : "Ristorante Bella Vita";
+const desc = description ?? "Italienische Küche in Berlin – Pasta, Pizza & hausgemachte Desserts.";
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <meta name="theme-color" content="#0b0f14" />
+  </head>
+  <body>
+    <Header currentPath={currentPath} />
+    <main class="container" style="padding: 18px 0 40px;">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

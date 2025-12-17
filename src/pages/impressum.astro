@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+<BaseLayout title="Impressum" currentPath="/impressum">
+  <h1 class="h1">Impressum</h1>
+  <p class="p">
+    Platzhalter-Text – bitte mit echten Daten ersetzen (Inhaber, Anschrift, Kontakt, ggf. USt-IdNr.).
+  </p>
+
+  <section class="card" style="margin-top:14px;">
+    <h2 class="h2">{site.name}</h2>
+    <p class="p">{site.addressLines.join(", ")}</p>
+    <p class="p">Telefon: {site.phone}</p>
+    <p class="p">E-Mail: {site.email}</p>
+  </section>
+</BaseLayout>

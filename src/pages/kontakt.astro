@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+<BaseLayout title="Kontakt" currentPath="/kontakt">
+  <section style="margin: 8px 0 16px;">
+    <h1 class="h1">Kontakt & Anfahrt</h1>
+    <p class="p">Reservierungen am schnellsten per Telefon.</p>
+  </section>
+
+  <section class="grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="card">
+      <h2 class="h2">Kontakt</h2>
+      <p class="p"><strong>Telefon:</strong> <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a></p>
+      <p class="p"><strong>E-Mail:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <hr />
+      <h2 class="h2">Adresse</h2>
+      <p class="p">{site.addressLines.join(", ")}</p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+        <a class="btn primary" href={`tel:${site.phone.replace(/\s/g, "")}`}>Jetzt reservieren</a>
+        <a class="btn" href="/speisekarte">Speisekarte</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="h2">Öffnungszeiten</h2>
+      <div class="grid" style="gap:8px;">
+        {site.hours.map((h) => (
+          <div style="display:flex; justify-content:space-between; gap:12px;">
+            <span style="color:var(--muted)">{h.days}</span>
+            <strong>{h.time}</strong>
+          </div>
+        ))}
+      </div>
+
+      <hr />
+      <p class="p" style="font-size: 13px;">
+        Optional: Später kannst du hier eine Google-Maps-Karte einbetten oder eine statische Karte nutzen.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    @media (max-width: 900px){
+      section.grid{ grid-template-columns: 1fr !important; }
+    }
+  </style>
+</BaseLayout>

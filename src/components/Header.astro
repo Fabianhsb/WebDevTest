@@ -1,0 +1,31 @@
+---
+const { currentPath = "/" } = Astro.props;
+
+const link = (href: string, label: string) => {
+  const isCurrent = currentPath === href;
+  return { href, label, isCurrent };
+};
+
+const links = [
+  link("/", "Start"),
+  link("/speisekarte", "Speisekarte"),
+  link("/kontakt", "Kontakt"),
+];
+---
+<header style="border-bottom: 1px solid var(--line); background: rgba(0,0,0,.25); position: sticky; top: 0; backdrop-filter: blur(10px); z-index: 50;">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; padding: 14px 0;">
+    <a href="/" style="display:flex; gap:.6rem; align-items:center;">
+      <span style="width:10px; height:10px; border-radius:999px; background: var(--brand); display:inline-block;"></span>
+      <strong>Ristorante Bella Vita</strong>
+    </a>
+
+    <nav style="display:flex; gap:14px; align-items:center;">
+      {links.map((l) => (
+        <a href={l.href} aria-current={l.isCurrent ? "page" : undefined}>
+          {l.label}
+        </a>
+      ))}
+      <a class="btn primary" href="tel:+49301234567">Reservieren</a>
+    </nav>
+  </div>
+</header>

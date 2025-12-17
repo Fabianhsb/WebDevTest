@@ -1,0 +1,19 @@
+---
+import { site } from "../data/site";
+---
+<footer style="border-top: 1px solid var(--line); padding: 26px 0; margin-top: 32px;">
+  <div class="container grid" style="grid-template-columns: 1.2fr .8fr; align-items:start;">
+    <div>
+      <strong>{site.name}</strong>
+      <p class="p">{site.tagline}</p>
+      <p class="p" style="margin-top:8px;">
+        {site.addressLines.join(" • ")}
+      </p>
+    </div>
+    <div style="justify-self:end; text-align:right;">
+      <a class="btn" href="/impressum">Impressum</a>
+      <a class="btn" style="margin-left:8px;" href="/datenschutz">Datenschutz</a>
+      <p class="p" style="margin-top:10px;">© {new Date().getFullYear()} {site.name}</p>
+    </div>
+  </div>
+</footer>

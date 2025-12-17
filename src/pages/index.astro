@@ -1,11 +1,68 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
 ---
+<BaseLayout title="Start" currentPath="/">
+  <section class="card" style="padding: 26px;">
+    <span class="badge">Heute geöffnet</span>
+    <h1 class="h1" style="margin-top:10px;">{site.tagline}</h1>
+    <p class="p" style="max-width: 65ch;">
+      Willkommen im {site.name}. Genieße klassische italienische Küche mit frischen Zutaten – perfekt für Lunch, Date Night oder Familienessen.
+    </p>
 
-<Layout>
-	<Welcome />
-</Layout>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+      <a class="btn primary" href="/speisekarte">Speisekarte ansehen</a>
+      <a class="btn" href="/kontakt">Kontakt & Anfahrt</a>
+      <a class="btn" href={`tel:${site.phone.replace(/\s/g, "")}`}>Anrufen</a>
+    </div>
+  </section>
+
+  <section class="grid" style="grid-template-columns: 1fr 1fr; margin-top:16px;">
+    <div class="card">
+      <h2 class="h2">Öffnungszeiten</h2>
+      <div class="grid" style="gap:8px;">
+        {site.hours.map((h) => (
+          <div style="display:flex; justify-content:space-between; gap:12px;">
+            <span style="color:var(--muted)">{h.days}</span>
+            <strong>{h.time}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="h2">Adresse</h2>
+      <p class="p">{site.addressLines.join(", ")}</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+        <a class="btn" href={`mailto:${site.email}`}>E-Mail</a>
+        <a class="btn" href={site.socials.instagram}>Instagram</a>
+        <a class="btn" href={site.socials.facebook}>Facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:16px;">
+    <h2 class="h2">Highlights</h2>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="card">
+        <strong>Steinofen-Pizza</strong>
+        <p class="p">Knuspriger Boden, gute Zutaten, schnell serviert.</p>
+      </div>
+      <div class="card">
+        <strong>Hausgemachte Pasta</strong>
+        <p class="p">Klassiker + saisonale Specials.</p>
+      </div>
+      <div class="card">
+        <strong>Desserts</strong>
+        <p class="p">Tiramisu & Panna Cotta wie in Italien.</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @media (max-width: 900px){
+      section.grid{ grid-template-columns: 1fr !important; }
+      .card .grid[style*="repeat(3"]{ grid-template-columns: 1fr !important; }
+    }
+  </style>
+</BaseLayout>

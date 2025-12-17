@@ -1,0 +1,26 @@
+---
+import type { MenuCategory } from "../data/menu";
+
+const { category } = Astro.props as { category: MenuCategory };
+---
+<section class="card">
+  <h2 class="h2">{category.title}</h2>
+  {category.note && <p class="p" style="margin-top:0;">{category.note}</p>}
+
+  <hr />
+
+  <div class="grid" style="gap:12px;">
+    {category.items.map((item) => (
+      <div style="display:flex; justify-content:space-between; gap:14px;">
+        <div>
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <strong>{item.name}</strong>
+            {(item.badges ?? []).map((b) => <span class="badge">{b}</span>)}
+          </div>
+          {item.description && <div class="p" style="margin-top:4px;">{item.description}</div>}
+        </div>
+        <div style="white-space:nowrap; color: var(--text); font-weight:600;">{item.price}</div>
+      </div>
+    ))}
+  </div>
+</section>
